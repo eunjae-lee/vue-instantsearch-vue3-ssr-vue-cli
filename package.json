@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@vue/server-renderer": "^3.0.0-rc.5",
+    "algoliasearch": "^4.10.3",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "vue": "^3.0.0-0",
+    "vue-instantsearch": "https://pkg.csb.dev/algolia/vue-instantsearch/commit/bf5fe55b/vue-instantsearch",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-node-externals": "^2.5.1"
   },
