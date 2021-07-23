@@ -8,7 +8,7 @@
     "build:client": "SSR_TARGET=client vue-cli-service build --dest dist/client",
     "build:server": "SSR_TARGET=server vue-cli-service build --dest dist/server",
     "pressr": "yarn build",
-    "ssr": "node src/server.js",
+    "ssr": "node server.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
