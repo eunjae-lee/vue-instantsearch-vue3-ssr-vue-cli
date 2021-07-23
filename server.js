@@ -21,7 +21,7 @@ const indexTemplate = fs.readFileSync(
 });
 
 server.get("*", async (req, res) => {
-  const { html } = await render();
+  const { html } = await render({ url: req.url });
 
   const finalHtml = indexTemplate
     .toString()

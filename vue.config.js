@@ -8,6 +8,13 @@ exports.chainWebpack = webpackConfig => {
   webpackConfig.plugins.delete("progress");
   webpackConfig.plugins.delete("friendly-errors");
 
+  webpackConfig.plugin("define").tap(definitions => {
+    definitions[0]["process.env"]["SSR_TARGET"] = JSON.stringify(
+      process.env.SSR_TARGET
+    );
+    return definitions;
+  });
+
   if (process.env.SSR_TARGET === "client") {
     webpackConfig
       .entry("app")
@@ -28,12 +35,16 @@ exports.chainWebpack = webpackConfig => {
 
     webpackConfig.externals(
       nodeExternals({
-        allowlist: [/\.(css|vue)$/, /vue-instantsearch/, /instantsearch\.js/]
+        allowlist: [
+          /\.(css|vue)$/,
+          /vue-instantsearch/,
+          /instantsearch\.js/,
+          "@vue/server-renderer",
+          "vue-router"
+        ]
       })
     );
 
     webpackConfig.optimization.splitChunks(false).minimize(false);
   }
-
-  // console.log(webpackConfig.toConfig())
 };

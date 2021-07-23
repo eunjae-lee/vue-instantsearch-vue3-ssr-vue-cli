@@ -1,4 +1,8 @@
-import createApp from "./app";
+import { createApp } from "./app";
 
-const { app } = createApp();
-app.mount("#app");
+const { app, router } = createApp();
+
+// wait until router is ready before mounting to ensure hydration match
+router.isReady().then(() => {
+  app.mount("#app");
+});
