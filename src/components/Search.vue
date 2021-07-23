@@ -1,5 +1,5 @@
 <template>
-  <ais-instant-search :search-client="searchClient" index-name="instant_search">
+  <ais-instant-search-ssr>
     <ais-search-box />
     <ais-stats />
     <ais-refinement-list attribute="brand" />
@@ -14,13 +14,12 @@
       </template>
     </ais-hits>
     <ais-pagination />
-  </ais-instant-search>
+  </ais-instant-search-ssr>
 </template>
 
 <script>
 import {
-  AisInstantSearch,
-  // AisInstantSearchSsr,
+  AisInstantSearchSsr,
   AisRefinementList,
   AisHits,
   AisHighlight,
@@ -28,27 +27,16 @@ import {
   AisStats,
   AisPagination
 } from "vue-instantsearch/dist/vue3/es";
-import algoliasearch from "algoliasearch/lite";
-const searchClient = algoliasearch(
-  "latency",
-  "6be0576ff61c053d5f9a3225e2a90f76"
-);
 
 export default {
   components: {
-    AisInstantSearch,
-    // AisInstantSearchSsr,
+    AisInstantSearchSsr,
     AisRefinementList,
     AisHits,
     AisHighlight,
     AisSearchBox,
     AisStats,
     AisPagination
-  },
-  data() {
-    return {
-      searchClient
-    };
   }
 };
 </script>
