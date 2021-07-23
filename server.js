@@ -7,24 +7,18 @@ const server = express();
 
 const appPath = path.join(__dirname, "./dist/server", manifest["app.js"]);
 const render = require(appPath).render;
+
 const indexTemplate = fs.readFileSync(
   path.join(__dirname, "./dist/client", "index.html"),
   "utf-8"
 );
 
-server.use(
-  "/img",
-  express.static(path.join(__dirname, "./dist/client", "img"))
-);
-server.use("/js", express.static(path.join(__dirname, "./dist/client", "js")));
-server.use(
-  "/css",
-  express.static(path.join(__dirname, "./dist/client", "css"))
-);
-server.use(
-  "/favicon.ico",
-  express.static(path.join(__dirname, "./dist/client", "favicon.ico"))
-);
+["img", "js", "css", "favicon.ico"].forEach(resource => {
+  server.use(
+    `/${resource}`,
+    express.static(path.join(__dirname, "./dist/client", resource))
+  );
+});
 
 server.get("*", async (req, res) => {
   const { html } = await render();
