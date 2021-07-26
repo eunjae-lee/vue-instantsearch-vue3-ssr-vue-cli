@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const nodeExternals = require("webpack-node-externals");
 
@@ -40,11 +41,16 @@ exports.chainWebpack = webpackConfig => {
           /vue-instantsearch/,
           /instantsearch\.js/,
           "@vue/server-renderer",
+          "qs",
           "vue-router"
         ]
       })
     );
 
-    webpackConfig.optimization.splitChunks(false).minimize(false);
+    webpackConfig.plugin("limit").use(
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      })
+    );
   }
 };
