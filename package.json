@@ -1,14 +1,13 @@
 {
-  "name": "vue3-ssr",
+  "name": "vue3-ssr-vue-cli",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "yarn build:client && yarn build:server",
     "build:client": "SSR_TARGET=client vue-cli-service build --dest dist/client",
     "build:server": "SSR_TARGET=server vue-cli-service build --dest dist/server",
-    "pressr": "yarn build",
-    "ssr": "node server.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
