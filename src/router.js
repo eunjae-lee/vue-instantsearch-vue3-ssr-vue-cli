@@ -6,8 +6,8 @@ import {
 import qs from "qs";
 
 const routes = [
-  { path: "/", component: () => import("./pages/Home") },
-  { path: "/about", component: () => import("./pages/About") }
+  { path: "/", component: () => import("./pages/Home.vue") },
+  { path: "/about", component: () => import("./pages/About.vue") }
 ];
 
 export function createRouter() {
